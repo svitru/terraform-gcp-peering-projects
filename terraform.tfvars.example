@@ -1,0 +1,7 @@
+public_key_path = "~/user.pub"
+private_key_path = "~/user"
+image = "ubuntu-1804-lts"
+project_a = "project-a-00000"
+user = "user"
+credentials_file = "~/project-a-00000-xxxx00000.json"
+
