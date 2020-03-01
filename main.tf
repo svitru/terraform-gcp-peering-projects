@@ -83,4 +83,53 @@ resource "google_compute_firewall" "network_b_fw" {
 
 }
 
+resource "google_compute_instance" "vm_instance_a" {
+  project = var.project_a
+
+  name         = "instance-a"
+  machine_type = "f1-micro"
+
+  boot_disk {
+    initialize_params {
+      image = var.image
+      size  = "10"
+    }
+  }
+
+  network_interface {
+    network = google_compute_network.network_a.name
+    subnetwork = google_compute_subnetwork.network_a_central.self_link
+    access_config {
+    }
+  }
+
+  metadata = {
+    ssh-keys = "${var.user}:${file(var.public_key_path)}"
+  }
+}
+
+resource "google_compute_instance" "vm_instance_b" {
+  project = var.project_b
+
+  name         = "instance-b"
+  machine_type = "f1-micro"
+
+  boot_disk {
+    initialize_params {
+      image = var.image
+      size  = "10"
+    }
+  }
+
+  network_interface {
+    network = google_compute_network.network_b.name
+    subnetwork = google_compute_subnetwork.network_b_central.self_link
+    access_config {
+    }
+  }
+
+  metadata = {
+    ssh-keys = "${var.user}:${file(var.public_key_path)}"
+  }
+}
 
