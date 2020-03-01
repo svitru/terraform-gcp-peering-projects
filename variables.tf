@@ -22,6 +22,10 @@ variable "project_a" {
   description = "Name of first google project"
 }
 
+variable "project_b" {
+  description = "Name of second google project"
+}
+
 variable "user" {
   description = "user for ssh access"
 }
